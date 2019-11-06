@@ -18,8 +18,9 @@ class LocalWeatherViewController: UIViewController {
 
     init?(coder: NSCoder, viewModel: LocalWeatherViewModel) {
         self.viewModel = viewModel
-
         super.init(coder: coder)
+
+        setupViewModel()
     }
 
     required init?(coder: NSCoder) {
@@ -30,5 +31,27 @@ class LocalWeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    // MARK: - Setup
+
+    private func setupViewModel() {
+        viewModel.onAlert = { [weak self] title, message, userActions in
+            self?.alert(title: title,
+                        message: message,
+                        userActions: userActions)
+        }
+
+        viewModel.onOpenSettings = {
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)")
+                })
+            }
+        }
     }
 }
