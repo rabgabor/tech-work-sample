@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let storyboard = UIStoryboard(name: "LocalWeather", bundle: nil)
 
-        let viewModel = LocalWeatherViewModel()
+        let viewModel = LocalWeatherViewModel(webService: LocalWeatherWebService(apiKey: config.apiKey))
         let viewController = storyboard.instantiateInitialViewController { (coder) -> LocalWeatherViewController? in
             return LocalWeatherViewController(
                 coder: coder,
@@ -42,4 +42,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
     }
 }
-

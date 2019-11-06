@@ -9,6 +9,14 @@
 import Foundation
 
 class LocalWeatherViewModel {
-    init() {
+
+    // MARK: - Properties
+
+    private let webService: WebService
+
+    // MARK: - Object lifecycle
+
+    init(webService: WebService) {
+        self.webService = webService
     }
 }

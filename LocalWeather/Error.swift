@@ -43,5 +43,6 @@ extension LocalWeatherError: CustomNSError {
 enum ErrorCode: Int {
     case configFileNotFound = 1
     case apiKeyNotFoundInConfigFile = 2
-    case general = 3
+    case invalidURL = 3
+    case httpError = 4
 }
