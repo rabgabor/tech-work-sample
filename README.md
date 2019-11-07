@@ -1,5 +1,11 @@
 # Work sample - iOS Application developer
 
+## Developer comments
+
+- In order to run the app, provide a Config.plist file similar to the provided ConfigExample.plist file. Here, provide your API key for the "apiKey". The app can be built by default, but please note that it requires iOS 13.1 to run.
+- The app supports dark mode and has adaptive layout. It has no buttons apart from the UIAlerts. It fetches the location and the weather based on the location every five minutes when the app is in foreground. When sent to background or location authorization is given, the timer restarts.
+- I spent 8 hours doing the assignment.
+
 ## Assignment
 
 - Build a simple one-view conroller app that shows the weather at your current location.
