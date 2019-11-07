@@ -39,7 +39,7 @@ class LocalWeatherViewModel: NSObject {
             return
         }
 
-        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true, block: { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 300.0, repeats: true, block: { [weak self] _ in
             self?.didFindLocation = false
             self?.locationManager.requestLocation()
         })
