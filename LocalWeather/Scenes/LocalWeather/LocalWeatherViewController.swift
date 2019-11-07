@@ -14,6 +14,13 @@ class LocalWeatherViewController: UIViewController {
     
     private let viewModel: LocalWeatherViewModel
 
+    // MARK: - Outlets
+
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var locationNameLabel: UILabel!
+    @IBOutlet weak var weatherDescriptionLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    
     // MARK: - Object lifecycle
 
     init?(coder: NSCoder, viewModel: LocalWeatherViewModel) {
@@ -27,10 +34,17 @@ class LocalWeatherViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        applyColors()
+    }
+
     // MARK: - View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        applyColors()
+        resetInfo()
     }
 
     // MARK: - Setup
@@ -55,11 +69,26 @@ class LocalWeatherViewController: UIViewController {
         }
 
         viewModel.onWeatherUpdate = { [weak self] weatherInfo in
-            guard let sureSelf = self else {
-                return
-            }
-
-            print("Weather Info: \(weatherInfo)")
+            self?.resetInfo(with: weatherInfo)
         }
+    }
+
+    // MARK: - Helper
+
+    private func applyColors() {
+        let isDarkMode = traitCollection.userInterfaceStyle == .dark ? true : false
+        iconImageView.tintColor = isDarkMode ? .white : .black
+    }
+
+    private func resetInfo(with weatherInfo: WeatherInfo? = nil) {
+        if let imageName = weatherInfo?.iconName, let image = UIImage(named: imageName) {
+            iconImageView.image = image
+        } else {
+            iconImageView.image = nil
+        }
+
+        locationNameLabel.text = weatherInfo?.locationName
+        weatherDescriptionLabel.text = weatherInfo?.description
+        temperatureLabel.text = weatherInfo?.temperature ?? "--º"
     }
 }
