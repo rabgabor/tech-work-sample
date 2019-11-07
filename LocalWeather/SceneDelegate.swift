@@ -12,6 +12,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    weak var localWeatherViewModel: LocalWeatherViewModel!
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else {
             return
@@ -31,6 +33,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "LocalWeather", bundle: nil)
 
         let viewModel = LocalWeatherViewModel(webService: LocalWeatherWebService(apiKey: config.apiKey))
+        localWeatherViewModel = viewModel
+
         let viewController = storyboard.instantiateInitialViewController { (coder) -> LocalWeatherViewController? in
             return LocalWeatherViewController(
                 coder: coder,
@@ -40,5 +44,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         self.window?.rootViewController = viewController
         self.window?.makeKeyAndVisible()
+    }
+
+    func sceneDidBecomeActive(_ scene: UIScene) {
+        localWeatherViewModel.startWeatherUpdate()
+    }
+
+    func sceneWillResignActive(_ scene: UIScene) {
+        localWeatherViewModel.stopWeatherUpdate()
     }
 }

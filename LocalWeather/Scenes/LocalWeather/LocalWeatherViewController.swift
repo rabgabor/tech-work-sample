@@ -53,5 +53,13 @@ class LocalWeatherViewController: UIViewController {
                 })
             }
         }
+
+        viewModel.onWeatherUpdate = { [weak self] weatherInfo in
+            guard let sureSelf = self else {
+                return
+            }
+
+            print("Weather Info: \(weatherInfo)")
+        }
     }
 }

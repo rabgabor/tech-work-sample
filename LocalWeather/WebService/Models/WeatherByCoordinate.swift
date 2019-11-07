@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct WeatherByCoordinatesRequest: Codable {
+struct WeatherByCoordinateRequest: Codable {
     let latitude: Double
     let longitude: Double
 }
 
-struct WeatherByCoordinatesResponse: Codable {
+struct WeatherByCoordinateResponse: Codable {
     let locationName: String
     let weather: [Weather]
     let temperature: Temperature
@@ -23,8 +23,8 @@ struct WeatherByCoordinatesResponse: Codable {
     }
 }
 
-extension WeatherByCoordinatesRequest: Request {
-    typealias Resp = WeatherByCoordinatesResponse
+extension WeatherByCoordinateRequest: Request {
+    typealias Resp = WeatherByCoordinateResponse
 
     static let path = "weather"
     static let httpMethod: HTTPMethod = .get
@@ -35,4 +35,4 @@ extension WeatherByCoordinatesRequest: Request {
     }
 }
 
-extension WeatherByCoordinatesResponse: Response {}
+extension WeatherByCoordinateResponse: Response {}
