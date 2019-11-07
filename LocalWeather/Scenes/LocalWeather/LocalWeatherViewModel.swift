@@ -53,9 +53,7 @@ class LocalWeatherViewModel: NSObject {
         timer = nil
     }
 
-    // MARK: - Helper
-
-    private func fetchWeather(coordinate: CLLocationCoordinate2D) {
+    func fetchWeather(coordinate: CLLocationCoordinate2D) {
         webService.request(request: WeatherByCoordinateRequest(latitude: coordinate.latitude, longitude: coordinate.longitude)) { [weak self] (result) in
             guard let sureSelf = self else {
                 return
@@ -86,6 +84,8 @@ class LocalWeatherViewModel: NSObject {
             }
         }
     }
+
+    // MARK: - Helper
 
     private func displayLocationAuthorizationPrompt() {
         var userActions = [UserAction]()

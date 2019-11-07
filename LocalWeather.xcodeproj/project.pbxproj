@@ -27,6 +27,10 @@
 		14CD9B902373359D0091ACA2 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CD9B8F2373359D0091ACA2 /* Temperature.swift */; };
 		14CD9B952373660F0091ACA2 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CD9B942373660F0091ACA2 /* UIViewController+Alert.swift */; };
 		14CD9B9923736C8C0091ACA2 /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CD9B9823736C8C0091ACA2 /* UserAction.swift */; };
+		14E5F72623742B0D00DBE6BE /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 14E5F72523742B0D00DBE6BE /* weather.json */; };
+		14E5F72923742B3700DBE6BE /* MappingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5F72823742B3700DBE6BE /* MappingHelper.swift */; };
+		14E5F72C23742B8600DBE6BE /* StubWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5F72B23742B8600DBE6BE /* StubWebService.swift */; };
+		14E5F7312374435700DBE6BE /* StubWebServiceFailing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5F7302374435700DBE6BE /* StubWebServiceFailing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +68,10 @@
 		14CD9B8F2373359D0091ACA2 /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		14CD9B942373660F0091ACA2 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		14CD9B9823736C8C0091ACA2 /* UserAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
+		14E5F72523742B0D00DBE6BE /* weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weather.json; sourceTree = "<group>"; };
+		14E5F72823742B3700DBE6BE /* MappingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingHelper.swift; sourceTree = "<group>"; };
+		14E5F72B23742B8600DBE6BE /* StubWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubWebService.swift; sourceTree = "<group>"; };
+		14E5F7302374435700DBE6BE /* StubWebServiceFailing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubWebServiceFailing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +135,9 @@
 			children = (
 				14CD9B5E23731CDF0091ACA2 /* LocalWeatherTests.swift */,
 				14CD9B6023731CDF0091ACA2 /* Info.plist */,
+				14E5F72A23742B7800DBE6BE /* Stubs */,
+				14E5F72723742B2500DBE6BE /* Utilities */,
+				14E5F72423742ABF00DBE6BE /* Responses */,
 			);
 			path = LocalWeatherTests;
 			sourceTree = "<group>";
@@ -184,6 +195,31 @@
 				14CD9B9823736C8C0091ACA2 /* UserAction.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		14E5F72423742ABF00DBE6BE /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				14E5F72523742B0D00DBE6BE /* weather.json */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		14E5F72723742B2500DBE6BE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				14E5F72823742B3700DBE6BE /* MappingHelper.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		14E5F72A23742B7800DBE6BE /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				14E5F72B23742B8600DBE6BE /* StubWebService.swift */,
+				14E5F7302374435700DBE6BE /* StubWebServiceFailing.swift */,
+			);
+			path = Stubs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E5F72623742B0D00DBE6BE /* weather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +347,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E5F72C23742B8600DBE6BE /* StubWebService.swift in Sources */,
+				14E5F7312374435700DBE6BE /* StubWebServiceFailing.swift in Sources */,
+				14E5F72923742B3700DBE6BE /* MappingHelper.swift in Sources */,
 				14CD9B5F23731CDF0091ACA2 /* LocalWeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -44,7 +44,7 @@ class LocalWeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         applyColors()
-        resetInfo()
+        updateInfo()
     }
 
     // MARK: - Setup
@@ -69,7 +69,7 @@ class LocalWeatherViewController: UIViewController {
         }
 
         viewModel.onWeatherUpdate = { [weak self] weatherInfo in
-            self?.resetInfo(with: weatherInfo)
+            self?.updateInfo(with: weatherInfo)
         }
     }
 
@@ -80,7 +80,7 @@ class LocalWeatherViewController: UIViewController {
         iconImageView.tintColor = isDarkMode ? .white : .black
     }
 
-    private func resetInfo(with weatherInfo: WeatherInfo? = nil) {
+    private func updateInfo(with weatherInfo: WeatherInfo? = nil) {
         if let imageName = weatherInfo?.iconName, let image = UIImage(named: imageName) {
             iconImageView.image = image
         } else {

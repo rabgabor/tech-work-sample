@@ -7,28 +7,51 @@
 //
 
 import XCTest
+import CoreLocation
 @testable import LocalWeather
 
 class LocalWeatherTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testViewModelSucceeding() {
+        let localWeatherViewModel = LocalWeatherViewModel(webService: StubWebService())
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+        let testCoordinate = CLLocationCoordinate2D(latitude: 47.5, longitude: 19.04)
+        localWeatherViewModel.fetchWeather(coordinate: testCoordinate)
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        let weatherExpectation = self.expectation(description: "Weather info received")
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        localWeatherViewModel.onWeatherUpdate = { weatherInfo in
+            weatherExpectation.fulfill()
+            XCTAssertEqual(weatherInfo.locationName, "Budapest")
+            XCTAssertEqual(weatherInfo.temperature, "11º")
         }
+
+        localWeatherViewModel.onAlert = { _, _, _ in
+            XCTFail("Case should not produce error")
+        }
+
+        wait(for: [weatherExpectation], timeout: 1.5)
     }
 
+    func testViewModelFailing() {
+        let localWeatherViewModel = LocalWeatherViewModel(webService: StubWebServiceFailing())
+
+        let testCoordinate = CLLocationCoordinate2D(latitude: 47.5, longitude: 19.04)
+        localWeatherViewModel.fetchWeather(coordinate: testCoordinate)
+
+        let errorExpectation = self.expectation(description: "Error received")
+
+        localWeatherViewModel.onWeatherUpdate = { _ in
+            XCTFail("Should not produce result")
+        }
+
+        localWeatherViewModel.onAlert = { title, message, userActions in
+            errorExpectation.fulfill()
+            XCTAssertEqual(title, "Networking error")
+            XCTAssertEqual(message, "No internet")
+            XCTAssertEqual(userActions.count, 1)
+        }
+
+        wait(for: [errorExpectation], timeout: 1.5)
+    }
 }
